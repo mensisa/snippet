@@ -3,16 +3,16 @@ import cv2
 import random
 
 # OpenCV 人脸检测
-face_patterns = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-sample_image = cv2.imread('img/face2.jpg')
+face_patterns = cv2.CascadeClassifier('C:/Users/sdzar/Documents/GitHub/crossin/face_detect/haarcascade_frontalface_default.xml')
+sample_image = cv2.imread('C:/Users/sdzar/Documents/GitHub/crossin/face_detect/img/face3.jpg')
 faces = face_patterns.detectMultiScale(sample_image,
-                                       scaleFactor=1.1,
-                                       minNeighbors=8,
-                                       minSize=(50, 50))
+                                       scaleFactor=1.0087,
+                                       minNeighbors=1,
+                                       minSize=(0, 0))
 # 圣诞帽
 hats = []
 for i in range(4):
-    hats.append(cv2.imread('img/hat%d.png' % i, -1))
+    hats.append(cv2.imread('C:/Users/sdzar/Documents/GitHub/crossin/face_detect/img/hat%d.png' % i, -1))
 
 for face in faces:
     # 随机一顶帽子
@@ -38,4 +38,4 @@ for face in faces:
         sample_image[y1:y2, x1:x2, c] = (alpha_h * hat[hat_y1:hat_y2, hat_x1:hat_x2, c] + alpha * sample_image[y1:y2, x1:x2, c])
 
 # 保存最终结果
-cv2.imwrite('faces_detect.png', sample_image)
+cv2.imwrite('C:/Users/sdzar/Documents/GitHub/crossin/face_detect/img/faces_detect.png', sample_image)
